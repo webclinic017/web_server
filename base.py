@@ -50,11 +50,14 @@ from pandas.tseries.offsets import CustomBusinessDay
 from pandas.core.base import PandasObject
 import pandas as pd
 from pathlib import Path
-from ib_insync import *
 
-global ib
-ib = IB()
 
+try:
+    from ib_insync import *
+    global ib
+    ib = IB()
+except Exception as e:
+    print(f"ib_insync not found, some functions will not work : {e}")
 
 DIR = f"{Path('.').parent.absolute()}"
 global PATH
